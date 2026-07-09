@@ -1,0 +1,10 @@
+apiVersion: platform.cost.io/v1alpha1
+kind: ObjectBucket
+
+metadata:
+  name: storage-prod
+
+spec:
+  tier: hot
+  versioning: true
+  lifecycleDays: 90
