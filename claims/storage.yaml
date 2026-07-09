@@ -5,4 +5,4 @@ metadata:
 spec:
   tier: hot
   versioning: 'false'
-  lifecycleDays: 90
+  lifecycleDays: '120'
