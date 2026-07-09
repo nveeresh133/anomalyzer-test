@@ -4,5 +4,5 @@ metadata:
   name: storage-prod
 spec:
   tier: hot
-  versioning: true
+  versioning: 'false'
   lifecycleDays: 90
