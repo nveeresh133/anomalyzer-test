@@ -1,0 +1,18 @@
+apiVersion: platform.cost.io/v1alpha1
+kind: KeyVault
+metadata:
+  name: app-keyvault
+  namespace: default
+
+spec:
+  region: westeurope
+  sku: standard
+  purgeProtection: true
+  softDeleteRetentionDays: 90
+  publicNetworkAccess: Enabled
+  environment: dev
+
+  compositionSelector:
+    matchLabels:
+      provider: azure
+      resource: keyvault

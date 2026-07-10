@@ -1,0 +1,17 @@
+apiVersion: platform.cost.io/v1alpha1
+kind: WebApp
+
+metadata:
+  name: web-demo
+  namespace: default
+
+spec:
+  region: westeurope
+  runtime: python
+  planSku: P1v3
+  alwaysOn: true
+
+  compositionSelector:
+    matchLabels:
+      provider: azure
+      resource: webapp

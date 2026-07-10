@@ -1,0 +1,19 @@
+apiVersion: platform.cost.io/v1alpha1
+kind: KubernetesCluster
+metadata:
+  name: demo-aks
+  namespace: default
+spec:
+  region: westeurope
+  kubernetesVersion: "1.30"
+  nodeCount: 3
+  vmSize: Standard_D8s_v3
+  autoScaling: true
+  minNodes: 1
+  maxNodes: 5
+  environment: dev
+
+  compositionSelector:
+    matchLabels:
+      provider: azure
+      resource: aks
