@@ -5,9 +5,9 @@ metadata:
   namespace: default
 spec:
   region: westeurope
-  kubernetesVersion: '1.30'
+  kubernetesVersion: 1.30
   nodeCount: 3
-  vmSize: Standard_D4s_v3
+  vmSize: Standard_D8s_v3
   autoScaling: true
   minNodes: 1
   maxNodes: 5
