@@ -3,6 +3,6 @@ kind: ObjectBucket
 metadata:
   name: storage-prod
 spec:
-  tier: cool
+  tier: hot
   versioning: true
   lifecycleDays: 90
