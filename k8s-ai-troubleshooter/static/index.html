@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K8s AI Troubleshooter | On-Demand Cluster Diagnostics</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="brand">
+                <div class="logo-icon">
+                    <i class="fa-solid fa-dharmachakra"></i>
+                </div>
+                <div>
+                    <h1>K8s AI Troubleshooter</h1>
+                    <p class="subtitle">On-Demand Autonomous Kubernetes Diagnostics</p>
+                </div>
+            </div>
+            <div class="status-pill" id="api-status">
+                <span class="status-dot green"></span>
+                <span id="status-text">Connected to K8s API</span>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-layout">
+            <!-- Left Control Panel -->
+            <section class="control-panel glass-card">
+                <div class="form-group">
+                    <label for="cluster-select"><i class="fa-solid fa-server"></i> Target Cluster Context</label>
+                    <select id="cluster-select" class="form-control">
+                        <option value="">Default Context</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="namespace-select"><i class="fa-solid fa-layer-group"></i> Target Namespace</label>
+                    <select id="namespace-select" class="form-control">
+                        <option value="default">default</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="user-prompt"><i class="fa-solid fa-comment-dots"></i> Problem Context (Optional)</label>
+                    <textarea id="user-prompt" class="form-control" rows="3" placeholder="e.g. Payment pod failing with database connection error or crashlooping after deployment..."></textarea>
+                </div>
+
+                <button id="investigate-btn" class="btn btn-primary btn-block">
+                    <i class="fa-solid fa-microchip"></i>
+                    <span>Investigate Cluster</span>
+                </button>
+
+                <div class="stats-box">
+                    <div class="stat-item">
+                        <span class="stat-label">System Mode</span>
+                        <span class="stat-value text-accent">On-Demand</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Security RBAC</span>
+                        <span class="stat-value text-success">Read-Only</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right Results / Pipeline Panel -->
+            <section class="results-panel">
+                <!-- Idle State -->
+                <div id="idle-state" class="glass-card placeholder-card">
+                    <div class="placeholder-icon">
+                        <i class="fa-solid fa-magnifying-glass-chart"></i>
+                    </div>
+                    <h3>Ready for Cluster Investigation</h3>
+                    <p>Select a namespace and click <strong>"Investigate Cluster"</strong> to launch on-demand telemetry scan and AI reasoning.</p>
+                </div>
+
+                <!-- Loading / Pipeline State -->
+                <div id="loading-state" class="glass-card hidden">
+                    <div class="pipeline-header">
+                        <div class="spinner"></div>
+                        <h3>Investigating Cluster Telemetry...</h3>
+                    </div>
+                    <div id="thought-steps-container" class="thought-steps">
+                        <!-- Dynamic agent thought steps injected here -->
+                    </div>
+                </div>
+
+                <!-- Diagnosis Report View -->
+                <div id="report-view" class="hidden">
+                    <!-- Header Card -->
+                    <div class="glass-card report-header-card">
+                        <div class="report-top-bar">
+                            <div class="severity-badge" id="report-severity">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                                <span id="severity-text">CRITICAL</span>
+                            </div>
+                            <span class="timestamp" id="report-time">Just Now</span>
+                        </div>
+                        <h2 id="report-summary">Executive Summary</h2>
+                        <p class="summary-text" id="summary-body"></p>
+                    </div>
+
+                    <!-- Root Cause Breakdown -->
+                    <div class="glass-card section-card">
+                        <h3><i class="fa-solid fa-bug text-danger"></i> Technical Root Cause Analysis</h3>
+                        <div class="code-block-container" id="root-cause-body"></div>
+                    </div>
+
+                    <!-- Affected Resources -->
+                    <div class="glass-card section-card">
+                        <h3><i class="fa-solid fa-cubes text-warning"></i> Affected Resources</h3>
+                        <div id="affected-resources-tags" class="tags-container"></div>
+                    </div>
+
+                    <!-- Configuration Security Audits -->
+                    <div class="glass-card section-card hidden" id="security-audits-card">
+                        <h3><i class="fa-solid fa-shield-halved text-accent"></i> Configuration Security & Best-Practice Audits</h3>
+                        <p class="section-desc">Audit scans of Deployment workloads in the target namespace:</p>
+                        <div id="security-audits-list" class="audit-list-container"></div>
+                    </div>
+
+                    <!-- Remediation Action Plan -->
+                    <div class="glass-card section-card">
+                        <h3><i class="fa-solid fa-wand-magic-sparkles text-accent"></i> Recommended Remediation Script</h3>
+                        <p class="section-desc">Copy-pasteable kubectl fix commands (Manual review recommended):</p>
+                        <div id="remediation-steps-list" class="remediation-list"></div>
+                    </div>
+
+                    <!-- Prevention Tips -->
+                    <div class="glass-card section-card">
+                        <h3><i class="fa-solid fa-circle-check text-success"></i> Prevention & Best Practices</h3>
+                        <ul id="prevention-tips-list" class="tips-list"></ul>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Diff Preview Overlay Modal -->
+    <div id="diff-modal" class="modal-overlay hidden">
+        <div class="modal-container glass-card">
+            <div class="modal-header">
+                <h3><i class="fa-solid fa-code-compare text-accent"></i> YAML Dry-Run Configuration Diff</h3>
+                <button class="close-btn" id="close-diff-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-desc">Proposed YAML configuration diff (using server-side client dry-run):</p>
+                <pre class="code-block-container diff-viewer" id="diff-content"></pre>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>

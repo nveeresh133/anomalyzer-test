@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Anomalyzer Dashboard</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+        rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="/static/style.css">
+
+</head>
+
+<body>
+
+<div class="layout">
+
+    <!-- Sidebar -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+              Anomalyzer
+
+        </div>
+
+        <div class="menu-title">
+            OVERVIEW
+        </div>
+
+        <a class="menu active">
+            <i class="bi bi-speedometer2"></i>
+            Dashboard
+        </a>
+
+        <a class="menu">
+            <i class="bi bi-cloud"></i>
+            Resources
+        </a>
+
+        <div class="menu-title mt-4">
+            GITOPS
+        </div>
+
+        <a class="menu">
+            <i class="bi bi-git"></i>
+            Pull Requests
+        </a>
+
+        <a class="menu">
+            <i class="bi bi-diagram-3"></i>
+            Git Write Back
+        </a>
+
+        <a class="menu">
+            <i class="bi bi-clock-history"></i>
+            Activity
+        </a>
+
+        <div class="menu-title mt-4">
+            SETTINGS
+        </div>
+
+        <a class="menu">
+            <i class="bi bi-gear"></i>
+            Configuration
+        </a>
+
+    </aside>
+
+    <!-- Main -->
+
+    <main class="content">
+
+        <!-- Header -->
+
+        <div class="topbar">
+
+            <div>
+
+                <h2>GitOps Dashboard</h2>
+
+                <span class="subtitle">
+
+                    Last Sync : 2 minutes ago
+
+                </span>
+
+            </div>
+
+            <button class="run-btn">
+
+                <i class="bi bi-play-fill"></i>
+
+                Run Scan
+
+            </button>
+
+        </div>
+
+        <!-- Summary Cards -->
+
+        <div class="cards">
+
+            <div class="summary-card dark">
+
+                <p>Total Recommendations</p>
+
+                <h1>8</h1>
+
+            </div>
+
+            <div class="summary-card green">
+
+                <p>Potential Savings</p>
+
+                <h1>£855</h1>
+
+            </div>
+
+            <div class="summary-card white">
+
+                <p>Open Pull Requests</p>
+
+                <h1>2</h1>
+
+            </div>
+
+            <div class="summary-card white">
+
+                <p>Managed Resources</p>
+
+                <h1>12</h1>
+
+            </div>
+
+        </div>
+
+        <!-- Placeholder -->
+
+        <div class="dashboard-grid">
+
+    <div class="left-panel">
+
+        <div class="placeholder">
+
+        </div>
+
+    </div>
+
+    <div class="right-panel">
+
+        <div class="side-card">
+
+            <h4>Open Pull Requests</h4>
+
+            <div id="prList">
+
+                Loading...
+
+            </div>
+
+        </div>
+
+        <div class="side-card mt-4">
+
+            <h4>Recent Activity</h4>
+
+            <div id="activityList">
+
+                Loading...
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+    </main>
+
+</div>
+
+<script src="/static/app.js"></script>
+
+</body>
+
+</html>
